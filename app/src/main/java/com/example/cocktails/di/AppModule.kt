@@ -6,6 +6,7 @@ import androidx.room.Room
 import com.example.cocktails.data.local.AppDatabase
 import com.example.cocktails.data.local.dao.CocktailDao
 import com.example.cocktails.data.remote.ApiRoutes
+import com.example.cocktails.data.remote.ApiService
 import com.example.cocktails.utils.PREFS_FILENAME
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -57,18 +58,13 @@ object AppModule {
     @Provides
     fun getApi(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 
-    @Singleton
-    @Provides
-    fun getSharedPref(@ApplicationContext context: Context): SharedPreferences =
-        context.getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
-
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "app_database"
+            "com.example.cocktails"
         ).fallbackToDestructiveMigration()
             .build()
     }
