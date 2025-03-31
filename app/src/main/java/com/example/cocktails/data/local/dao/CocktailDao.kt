@@ -7,16 +7,19 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.cocktails.data.local.Cocktail
+import java.util.UUID
 
 @Dao
 interface CocktailDao {
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun addCocktail(cocktail: Cocktail)
-    @Query("SELECT *  FROM cocktail")
+
+    @Query("SELECT * FROM cocktail")
     fun getAllCocktail(): List<Cocktail>?
 
-    @Query("SELECT * FROM cocktail WHERE uuid = :cocktailId")
-    suspend fun getCocktailById(cocktailId: Int): Cocktail?
+    @Query("SELECT * FROM cocktail WHERE uuid = :cocktailUuid")
+    suspend fun getCocktailById(cocktailUuid: UUID): Cocktail?
+
+    @Insert()
+    suspend fun addCocktail(cocktail: Cocktail)
 
     @Update
     suspend fun updateCocktail(cocktail: Cocktail)
