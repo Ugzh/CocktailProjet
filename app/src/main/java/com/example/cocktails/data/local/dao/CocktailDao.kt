@@ -13,12 +13,12 @@ import java.util.UUID
 interface CocktailDao {
 
     @Query("SELECT * FROM cocktail")
-    suspend fun getAllCocktail(): List<Cocktail>?
+    suspend fun getAllCocktail(): List<Cocktail>
 
     @Query("SELECT * FROM cocktail WHERE uuid = :cocktailUuid")
     suspend fun getCocktailById(cocktailUuid: UUID): Cocktail?
 
-    @Insert()
+    @Insert
     suspend fun addCocktail(cocktail: Cocktail)
 
     @Update

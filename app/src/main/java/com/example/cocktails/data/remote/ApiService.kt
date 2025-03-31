@@ -9,4 +9,9 @@ interface ApiService {
     suspend fun getAllDrinks(
         @Query("f", encoded = true) char : Char
     ) : Response<CocktailDto>?
+
+    @GET(ApiRoutes.GET_COCKTAIL_BY_ID)
+    suspend fun getDrinkById(
+        @Query("i", encoded = true) id : String
+    ) : Response<CocktailDto>?
 }
