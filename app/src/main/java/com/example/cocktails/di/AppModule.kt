@@ -2,9 +2,11 @@ package com.example.cocktails.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.room.Room
+import com.example.cocktails.data.local.AppDatabase
+import com.example.cocktails.data.local.dao.CocktailDao
 import com.example.cocktails.data.remote.ApiRoutes
-import com.example.feedarticlejetpack.network.ApiService
-import com.example.feedarticlejetpack.utils.PREFS_FILENAME
+import com.example.cocktails.utils.PREFS_FILENAME
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -59,5 +61,22 @@ object AppModule {
     @Provides
     fun getSharedPref(@ApplicationContext context: Context): SharedPreferences =
         context.getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
+
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "app_database"
+        ).fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCocktail(database: AppDatabase): CocktailDao {
+        return database.coktailDao()
+    }
 
 }
