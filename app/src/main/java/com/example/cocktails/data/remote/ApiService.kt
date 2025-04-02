@@ -5,10 +5,15 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET(ApiRoutes.GET_COCKTAILS_BY_PARAMS)
+   /* @GET(ApiRoutes.GET_COCKTAILS_BY_PARAMS)
     suspend fun getAllDrinks(
         @Query("f", encoded = true) char : Char
-    ) : Response<CocktailDto>?
+    ) : Response<CocktailDto>?*/
+
+    @GET(ApiRoutes.GET_COCKTAILS)
+    suspend fun getAllDrinks(
+        @Query("c", encoded = true) category : String = "Cocktail"
+    ) : Response<DrinkByCategoryDto>?
 
     @GET(ApiRoutes.GET_COCKTAIL_BY_ID)
     suspend fun getDrinkById(

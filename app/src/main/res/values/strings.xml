@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Cocktails</string>
     <string name="error_db">Error from DB</string>
+    <string name="letter_or_number_without_data">There is a number or a letter without data</string>
+    <string name="fill_field">Fill fields</string>
+
 </resources>

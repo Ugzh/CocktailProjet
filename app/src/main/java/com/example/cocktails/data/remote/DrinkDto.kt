@@ -1,6 +1,7 @@
 package com.example.cocktails.data.remote
 
 
+import com.example.cocktails.utils.DrinkMapped
 import com.squareup.moshi.Json
 
 data class DrinkDto(
@@ -106,4 +107,27 @@ data class DrinkDto(
     val strCreativeCommonsConfirmed: String?,
     @Json(name = "dateModified")
     val dateModified: String?
+)
+
+fun DrinkDto.toDrinkMapped() = DrinkMapped(
+    idDrink = idDrink,
+    strDrink = strDrink,
+    strCategory = strCategory,
+    strInstructions = strInstructions,
+    strDrinkThumb = strDrinkThumb,
+    strIngredient1 = if (strIngredient1 != null) "$strIngredient1 $strMeasure1" else "",
+    strIngredient2 = if (strIngredient2 != null) "$strIngredient2 $strMeasure2" else "",
+    strIngredient3 = if (strIngredient3 != null) "$strIngredient3 $strMeasure3" else "",
+    strIngredient4 = if (strIngredient4 != null) "$strIngredient4 $strMeasure4" else "",
+    strIngredient5 = if (strIngredient5 != null) "$strIngredient5 $strMeasure5" else "",
+    strIngredient6 = if (strIngredient6 != null) "$strIngredient6 $strMeasure6" else "",
+    strIngredient7 = if (strIngredient7 != null) "$strIngredient7 $strMeasure7" else "",
+    strIngredient8 = if (strIngredient8 != null) "$strIngredient8 $strMeasure8" else "",
+    strIngredient9 = if (strIngredient9 != null) "$strIngredient9 $strMeasure9" else "",
+    strIngredient10 = if (strIngredient10 != null) "$strIngredient10 $strMeasure10" else "",
+    strIngredient11 = if (strIngredient11 != null) "$strIngredient11 $strMeasure11" else "",
+    strIngredient12 = if (strIngredient12 != null) "$strIngredient12 $strMeasure12" else "",
+    strIngredient13 = if (strIngredient13 != null) "$strIngredient13 $strMeasure13" else "",
+    strIngredient14 = if (strIngredient14 != null) "$strIngredient14 $strMeasure14" else "",
+    strIngredient15 = if (strIngredient15 != null) "$strIngredient15 $strMeasure15" else "",
 )
